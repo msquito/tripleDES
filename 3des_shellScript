@@ -1,0 +1,23 @@
+#!/bin/bash
+# # H Ryan Harasimowicz | 9421622 | 2016.10.23
+# css 527 Cryptography and Data Assurance | Dr. Lagesse
+# script to demonstrate tripleDES
+
+echo "shell script to demonstrate tripleDES..."
+
+./3des genkey passwordString keyFile.txt
+
+./3des encrypt plaintext.txt keyFile.txt ciphertext_ECB.txt ECB
+./3des encrypt plaintext.txt keyFile.txt ciphertext_CBC.txt CBC
+./3des encrypt plaintext.txt keyFile.txt ciphertext_CTR.txt CTR
+
+./3des decrypt ciphertext_ECB.txt keyFile.txt output_ECB.txt ECB
+./3des decrypt ciphertext_CBC.txt keyFile.txt output_CBC.txt CBC
+./3des decrypt ciphertext_CTR.txt keyFile.txt output_CTR.txt CTR
+
+echo "diff plaintext and ECB..."
+diff plaintext.txt output_ECB.txt
+echo "diff plaintext and CBC..."
+diff plaintext.txt output_CBC.txt
+echo "diff plaintext and CTR..."
+diff plaintext.txt output_CTR.txt
